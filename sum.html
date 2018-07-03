@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Sum</title>
+</head>
+<body>
+    <div class="container" style="padding-top:5px">
+    <form name="formSum" class="form-inline">
+        <div class="form-group">
+          <label for="num1">Number 1: </label>
+          <input type="text" class="form-control" id="num1" placeholder="enter first number">
+        </div>
+        <div class="form-group">
+          <label for="num2">Number 2: </label>
+          <input type="text" class="form-control" id="num2" placeholder="enter second number">
+        </div>
+        <div class="form-group">
+          <label for="total">Total: </label>
+          <input type="text" class="form-control" id="total">
+        <button type="button" class="btn btn-default" id="getTotal">Sum</button>
+      </form>
+    </div>
+     <script>
+     $(document).ready(function(){
+       
+        $("#getTotal").click(function(){
+             var n1 = $("#num1").val();
+             var n2 = $("#num2").val();
+             n1 = parseFloat(n1);
+             n2 = parseFloat(n2);
+             if(!isNaN(n1) && !isNaN(n2)){
+                 var nTotal= n1+n2;
+                 $("#total").val(nTotal.toString());
+             }
+             else{
+                 alert('invalid number');
+                 $("#num1").val("");
+                 $("#num2").val("");
+             }
+           
+        })
+
+     })
+     </script>
+</body>
+</html>

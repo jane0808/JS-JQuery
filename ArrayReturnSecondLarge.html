@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Array retrun second</title>
+</head>
+<body>
+    <div class="container" style="padding-top:5px">
+         <div class="col-md-6" id="arrayList">
+               <input type="text" class="form-control" id="array1" class="input_arr">
+               <input type="text" class="form-control" id="array2" class="input_arr">
+               <input type="text" class="form-control" id="array3" class="input_arr">
+               <input type="text" class="form-control" id="array4" class="input_arr">
+               <input type="text" class="form-control" id="array5" class="input_arr">
+               <button type="button" class="btn btn-default" name="sort">Sort</button>
+               <button type="button" class="btn btn-default" name="reset">Reset</button>
+               <span id="secondInArray"></span>
+         </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            function checkArrayDataType (arr){       
+                var sameType = [];        
+                if(arr.length > 0){
+                    $.each(arr, function(i, value){
+                        if(!isNaN(Number(value))){
+                            sameType.push('number');
+                        }
+                        else{
+                            sameType.push('string');
+                        }                      
+                    })
+                    if($.inArray('number', sameType)!==-1 && $.inArray('string', sameType)!==-1) {
+                           sameType = [];
+                           return sameType;
+                    }
+                    else {               
+                        return sameType;
+                    }
+                }
+            }
+
+            function getSecond(arr){
+                var sameType = checkArrayDataType(arr);
+                if(sameType.length > 0){                 
+                    switch(sameType[0]){
+                        case 'number':
+                        arr = arr.sort(function(a,b){
+                            return (Number(b)-Number(a));
+                        })
+                        break;
+
+                        case 'string':
+                        arr = arr.sort(function(a,b){
+                            var x = a.toLowerCase();
+                            var y = b.toLowerCase();
+                            if (x > y) {return -1;}
+                            if (x < y) {return 1;}
+                            return 0;
+                        })
+                        break;                       
+                    }
+                    return arr;
+                }
+                else {
+                    alert('Array elements are not same type');
+                }
+            }
+
+            $("button[name='sort']").click(function(){
+                var inputArr = [];
+                $(':input').each(function() {  
+                    if($(this).val()!=='')               
+                    inputArr.push($(this).val());                                
+                });     
+                var sortedArray = getSecond(inputArr);
+                if(sortedArray.length > 0)
+                if(sortedArray[0]!==sortedArray[1]){
+                    $("#secondInArray").html(sortedArray[1]);
+                }
+                else {
+                    $("#secondInArray").html(sortedArray[2]); 
+                }
+            })
+
+            $("button[name='reset']").click(function(){
+                $(':input').each(function(){
+                    if($(this).val()!=='') 
+                    $(this).val('');
+                })
+                $("#secondInArray").html('');
+            })
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Integer - Even - odd</title>
+</head>
+<body>
+    <div class="container" style="padding-top:5px">
+        <form name="formInteger" class="form-inline">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="num1">Number: </label>
+                        <input type="text" class="form-control" id="num1" placeholder="enter number">
+                    </div>
+                    <span>
+                            <p id="integerType">Click me</p>
+                    </span>
+                </div>              
+            </div>                              
+        </form>
+    </div>
+<script>
+    $(document).ready(function(){
+        $("#integerType").click(function(){
+            var inputNum = $("#num1").val();
+            inputNum1 = Number(inputNum);
+            if(!isNaN(inputNum1)){
+                var text = EvenOrOdd(inputNum1);
+                $("#integerType").html(text);
+            }
+            else{
+                alert(inputNum + ' is not a number');
+            }
+        })
+
+        $("#num1").focus(function(){
+            $("#integerType").html('Click me');
+        })
+
+        function EvenOrOdd (number){
+            var text = '';
+            if(Number.isInteger(number)){
+                if(number % 2 === 0){
+                    text = number +' Is even number';
+                }
+                else {
+                    text =number +' is Odd number';
+                }              
+            }
+            else {
+                text = number + ' is not interger type';
+            }
+            return text;
+        }  
+    })
+</script>
+</body>
+</html>
